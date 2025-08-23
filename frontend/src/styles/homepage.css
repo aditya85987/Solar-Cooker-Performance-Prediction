@@ -1,0 +1,602 @@
+/* Homepage.css - Eco-Friendly Solar Cooker Design */
+
+.homepage {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 50%, #f0fdf4 100%);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* Hero Section */
+.hero-section {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #16a34a 0%, #059669 50%, #16a34a 100%);
+  color: white;
+  padding: 4rem 0;
+}
+
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.hero-content {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  text-align: center;
+}
+
+.hero-icons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.hero-title {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  background: linear-gradient(135deg, #fef3c7, #dcfce7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-subtitle {
+  font-size: 1.25rem;
+  color: #dcfce7;
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.hero-decoration-1 {
+  position: absolute;
+  top: -12rem;
+  right: -12rem;
+  width: 24rem;
+  height: 24rem;
+  background: #fbbf24;
+  border-radius: 50%;
+  opacity: 0.1;
+}
+
+.hero-decoration-2 {
+  position: absolute;
+  bottom: -8rem;
+  left: -8rem;
+  width: 16rem;
+  height: 16rem;
+  background: #22c55e;
+  border-radius: 50%;
+  opacity: 0.1;
+}
+
+/* Main Container */
+.main-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem;
+}
+
+/* Card Styles */
+.card {
+  background: white;
+  border-radius: 1.5rem;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  padding: 2rem;
+  border: 1px solid #dcfce7;
+  margin-bottom: 2rem;
+  position: relative;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+}
+
+.card-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+/* Input Section */
+.input-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+@media (max-width: 768px) {
+  .input-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.input-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 0.75rem;
+}
+
+.input-field {
+  width: 100%;
+  padding: 1rem 1.5rem;
+  font-size: 1.5rem;
+  border: 2px solid #bbf7d0;
+  border-radius: 1rem;
+  background: #f0fdf4;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+.input-field:focus {
+  outline: none;
+  border-color: #22c55e;
+  box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.1);
+}
+
+/* Button Styles */
+.btn-primary {
+  background: linear-gradient(135deg, #16a34a, #059669);
+  color: white;
+  font-weight: 700;
+  padding: 1rem 2rem;
+  border-radius: 1rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  font-size: 1.25rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #15803d, #047857);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(22, 163, 74, 0.3);
+}
+
+.btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btn-secondary {
+  background: linear-gradient(135deg, #ef4444, #f97316);
+  color: white;
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.75rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1.125rem;
+}
+
+.btn-secondary:hover {
+  background: linear-gradient(135deg, #dc2626, #ea580c);
+  transform: scale(1.05);
+}
+
+.btn-pcm {
+  background: linear-gradient(135deg, #22c55e, #10b981);
+}
+
+.btn-pcm:hover {
+  background: linear-gradient(135deg, #16a34a, #059669);
+}
+
+.btn-eval {
+  background: linear-gradient(135deg, #8b5cf6, #6366f1);
+}
+
+.btn-eval:hover {
+  background: linear-gradient(135deg, #7c3aed, #4f46e5);
+}
+
+/* Loading Spinner */
+.spinner {
+  width: 1.25rem;
+  height: 1.25rem;
+  border: 2px solid white;
+  border-top: 2px solid transparent;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Chart Container */
+.chart-container {
+  background: linear-gradient(135deg, #fef3c7, #fed7aa);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  border: 2px solid #fbbf24;
+}
+
+.chart-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #92400e;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Performance Cards Grid */
+.performance-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+@media (max-width: 1024px) {
+  .performance-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.performance-card {
+  background: white;
+  border-radius: 1.5rem;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  padding: 2rem;
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+}
+
+.performance-card.without-pcm {
+  border: 1px solid #fecaca;
+}
+
+.performance-card.with-pcm {
+  border: 1px solid #bbf7d0;
+}
+
+.performance-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.performance-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1f2937;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.performance-chart {
+  background: linear-gradient(135deg, #fef2f2, #fed7d7);
+  border-radius: 1rem;
+  padding: 1rem;
+}
+
+.performance-chart.pcm {
+  background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+}
+
+/* Evaluation Section */
+.eval-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+@media (max-width: 768px) {
+  .eval-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.eval-card {
+  border-radius: 1rem;
+  padding: 1.5rem;
+  border: 2px solid;
+}
+
+.eval-card.without-pcm {
+  background: linear-gradient(135deg, #fef2f2, #fed7d7);
+  border-color: #fca5a5;
+}
+
+.eval-card.with-pcm {
+  background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+  border-color: #86efac;
+}
+
+.eval-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.eval-title.without-pcm {
+  color: #b91c1c;
+}
+
+.eval-title.with-pcm {
+  color: #15803d;
+}
+
+.eval-metrics {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.eval-metric {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.eval-metric-label {
+  color: #6b7280;
+  font-size: 1.25rem;
+}
+
+.eval-metric-value {
+  font-weight: 700;
+  font-size: 1.25rem;
+}
+
+.eval-metric-value.without-pcm {
+  color: #dc2626;
+}
+
+.eval-metric-value.with-pcm {
+  color: #16a34a;
+}
+
+/* Cooking Time Section */
+.cooking-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+@media (max-width: 768px) {
+  .cooking-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.cooking-card {
+  background: white;
+  border-radius: 1.5rem;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  padding: 2rem;
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+}
+
+.cooking-card.rice {
+  border: 1px solid #fef3c7;
+}
+
+.cooking-card.sambar {
+  border: 1px solid #fed7aa;
+}
+
+.cooking-placeholder {
+  text-align: center;
+  color: #6b7280;
+  padding: 2rem;
+  font-size: 1.25rem;
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.footer-icons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.footer-text {
+  color: #6b7280;
+  font-size: 1.5rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 2rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 1rem;
+  }
+  
+  .main-container {
+    padding: 2rem 1rem;
+  }
+  
+  .card {
+    padding: 1.5rem;
+  }
+  
+  .performance-header {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: stretch;
+  }
+}
+
+/* Animations */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Utility Classes */
+.text-center {
+  text-align: center;
+}
+
+.flex {
+  display: flex;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.gap-2 {
+  gap: 0.5rem;
+}
+
+.gap-4 {
+  gap: 1rem;
+}
+
+.mb-4 {
+  margin-bottom: 1rem;
+}
+
+.mb-6 {
+  margin-bottom: 1.5rem;
+}
+
+.w-full {
+  width: 100%;
+}
+
+/* Prediction Cards Grid */
+.prediction-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+@media (max-width: 1024px) {
+  .prediction-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.prediction-card {
+  background: white;
+  border-radius: 1.5rem;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  padding: 2rem;
+  border: 1px solid #dcfce7;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  min-height: 180px;
+}
+
+.prediction-card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.prediction-card-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #1f2937;
+  flex: 1;
+}
+
+.prediction-card-description {
+  color: #6b7280;
+  font-size: 1.25rem;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+}
+
+.prediction-card-button {
+  align-self: flex-end;
+  margin-top: auto;
+}
+
+/* Status Pills */
+.status-pill {
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.status-pill.inactive {
+  background: #fef2f2;
+  color: #dc2626;
+}
+
+.status-pill.active {
+  background: #f0fdf4;
+  color: #16a34a;
+}
+
+
+
+
+
+
