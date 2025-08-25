@@ -25,6 +25,9 @@ app.add_middleware(
 
 # API Keys (Replace with your actual OpenWeatherMap API key)
 OPENWEATHERMAP_API_KEY = "b7bf0702e15026adf3b50f268a82d31d"
+@app.get("/")
+def read_root():
+    return {"status": "ok", "message": "Backend is running!"}
 
 # Function to get weather data from OpenWeatherMap
 def get_weather_data(lat: float, lon: float):
