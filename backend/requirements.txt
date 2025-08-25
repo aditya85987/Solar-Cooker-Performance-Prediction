@@ -5,4 +5,5 @@ joblib
 numpy
 pandas
 scikit-learn
-xgboost
+xgboost==1.7.6
+
