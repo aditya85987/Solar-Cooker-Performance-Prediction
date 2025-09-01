@@ -68,7 +68,7 @@ jobs:
         with:
           app-name: 'solarbackend'
           slot-name: 'Production'
-          package: backend/
+          package: .
 
       - name: Set startup command
         run: |
@@ -76,3 +76,4 @@ jobs:
             --resource-group YOUR_RESOURCE_GROUP \
             --name solarbackend \
             --startup-file "uvicorn server:app --host 0.0.0.0 --port 8000"
+
