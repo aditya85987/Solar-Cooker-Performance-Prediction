@@ -13,11 +13,15 @@ GOOGLE_API_KEY = "AIzaSyDZXOl2w80IeRUOvBlLooNFhbBZf6_0UZ4"
 
 app = FastAPI()
 
-
+origins = [
+    "http://localhost:3000",  # Local development
+    "https://yourdomain.com",  # Production frontend URL
+    "*"  # Allow all origins (use cautiously in production)
+]
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],  # 👈 Say "I trust this frontend"
+    allow_origins=origins,  # 👈 Say "I trust this frontend"
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -87,7 +91,9 @@ def get_solar_radiation(lat: float, lon: float, date: str):
         return {"error": "Failed to fetch solar radiation data"}
 
 
-
+@app.get("/")
+def read_root():
+    return {"message": "All successful!"}
 # API Endpoint
 @app.get("/api/weather")
 def get_weather(place: str = Query(...), date: str = Query(...)):
@@ -368,5 +374,6 @@ def predict_cooking_time(time: List[str] = Query(...),water_temp: List[float] = 
         {"time": time[i], "cooking_time": float(time_taken[i])}
         for i in range(len(time))
     ]
+
 
     return {"predictions": predictions}
