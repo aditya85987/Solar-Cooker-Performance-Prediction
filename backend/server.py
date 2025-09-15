@@ -9,20 +9,19 @@ import pandas as pd
 from typing import List
 new_data = None
 GOOGLE_API_KEY = "AIzaSyDZXOl2w80IeRUOvBlLooNFhbBZf6_0UZ4"
-
-
 app = FastAPI()
 
 origins = [
-    "http://localhost:3000",  # Local development
-    "https://solar-cooker-performance-prediction.vercel.app",  # Production frontend URL
-    "*"  # Allow all origins (use cautiously in production)
+    "http://localhost:3000",
+    "http://localhost:5173",
+    "http://127.0.0.1:3000",
+    "https://solar-cooker-performance-prediction.vercel.app"
 ]
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,  # 👈 Say "I trust this frontend"
-    allow_credentials=True,
+    allow_origins=origins,          # no "*"
+    allow_credentials=False,        # set False to avoid wildcard conflicts
     allow_methods=["*"],
     allow_headers=["*"],
 )
@@ -377,4 +376,5 @@ def predict_cooking_time(time: List[str] = Query(...),water_temp: List[float] = 
 
 
     return {"predictions": predictions}
+
 
