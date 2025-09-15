@@ -11,18 +11,14 @@ new_data = None
 GOOGLE_API_KEY = "AIzaSyDZXOl2w80IeRUOvBlLooNFhbBZf6_0UZ4"
 app = FastAPI()
 
-origins = [
-    "http://localhost:3000",
-    "https://solar-cooker-performance-prediction.vercel.app"
-]
-
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,          # no "*"
-    allow_credentials=False,        # set False to avoid wildcard conflicts
+    allow_origins=["*"],     # allow all origins
+    allow_credentials=False, # must stay False when using "*"
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
 
 # API Keys (Replace with your actual OpenWeatherMap API key)
 OPENWEATHERMAP_API_KEY = "b7bf0702e15026adf3b50f268a82d31d"
@@ -374,6 +370,7 @@ def predict_cooking_time(time: List[str] = Query(...),water_temp: List[float] = 
 
 
     return {"predictions": predictions}
+
 
 
 
