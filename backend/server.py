@@ -13,8 +13,6 @@ app = FastAPI()
 
 origins = [
     "http://localhost:3000",
-    "http://localhost:5173",
-    "http://127.0.0.1:3000",
     "https://solar-cooker-performance-prediction.vercel.app"
 ]
 
@@ -376,5 +374,6 @@ def predict_cooking_time(time: List[str] = Query(...),water_temp: List[float] = 
 
 
     return {"predictions": predictions}
+
 
 
