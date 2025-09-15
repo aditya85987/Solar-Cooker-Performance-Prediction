@@ -1,7 +1,18 @@
 body {
-  transform: scale(0.67);
+  transform: scale(0.60);
   transform-origin: top left;
-  width: calc(100% / 0.67);
-  min-height: calc(100vh / 0.67);
+  width: calc(100% / 0.60); 
+  min-height: calc(100vh / 0.60);
   overflow-x: hidden; 
+    margin: 0;
+  padding: 0;
 }
+html, body {
+  height: 100%;
+}
+
+.homepage {
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
