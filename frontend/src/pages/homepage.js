@@ -117,7 +117,7 @@ function HomePage() {
             const formattedDate = date.replace(/-/g, '');
             console.log('Fetching radiation data for:', place, 'on', formattedDate);
             
-            const response = await axios.get('http://localhost:8000/api/weather', {
+            const response = await axios.get('https://solar-cooker-performance-prediction.onrender.com/api/weather', {
                 params: { place: place, date: formattedDate }
             });
             const data = response.data;
@@ -172,7 +172,7 @@ function HomePage() {
             console.log(queryParams.toString());
 
             
-            const response = await fetch(`http://localhost:8000/api/without_pcm?${queryParams.toString()}`);
+            const response = await fetch(`https://solar-cooker-performance-prediction.onrender.com/api/without_pcm?${queryParams.toString()}`);
             const data = await response.json();
             
             if (response.ok) {
@@ -213,7 +213,7 @@ function HomePage() {
             total_minutes.forEach((min) => queryParams.append("total_minutes", min));
             solar_radiation.forEach((sr) => queryParams.append("solar_radiation", sr));
             
-            const response = await fetch(`http://localhost:8000/api/pcm_temp?${queryParams.toString()}`);
+            const response = await fetch(`https://solar-cooker-performance-prediction.onrender.com/api/pcm_temp?${queryParams.toString()}`);
             const data = await response.json();
             
             if (response.ok) {
@@ -253,7 +253,7 @@ function HomePage() {
             total_minutes.forEach((min) => queryParams.append("total_minutes", min));
             solar_radiation.forEach((sr) => queryParams.append("solar_radiation", sr));
             
-            const response = await fetch(`http://localhost:8000/api/with_pcm?${queryParams.toString()}`);
+            const response = await fetch(`https://solar-cooker-performance-prediction.onrender.com/api/with_pcm?${queryParams.toString()}`);
             const data = await response.json();
             
             if (response.ok) {
@@ -309,7 +309,7 @@ function HomePage() {
                 }
             }
             
-            const response = await fetch(`http://localhost:8000/api/eval?avg_radiation=${avg_radiation}&Tw2_with_pcm=${maxWithPCM}&Tw2_without_pcm=${maxWithoutPCM}`);
+            const response = await fetch(`https://solar-cooker-performance-prediction.onrender.com/api/eval?avg_radiation=${avg_radiation}&Tw2_with_pcm=${maxWithPCM}&Tw2_without_pcm=${maxWithoutPCM}`);
             const data = await response.json();
             
             if (response.ok) {
@@ -340,7 +340,7 @@ function HomePage() {
                 queryParams.append("water_temp", entry.water_temp);
                 queryParams.append("box_temp", entry.box_temp);
             });    
-            const response = await fetch(`http://localhost:8000/api/rice_room?${queryParams.toString()}`);
+            const response = await fetch(`https://solar-cooker-performance-prediction.onrender.com/api/rice_room?${queryParams.toString()}`);
             const data = await response.json();
             
             if (response.ok) {
@@ -374,7 +374,7 @@ function HomePage() {
                 queryParams.append("water_temp", entry.water_temp);
                 queryParams.append("box_temp", entry.box_temp);
             });    
-            const response = await fetch(`http://localhost:8000/api/sambar_room?${queryParams.toString()}`);
+            const response = await fetch(`https://solar-cooker-performance-prediction.onrender.com/api/sambar_room?${queryParams.toString()}`);
             const data = await response.json();
             
             if (response.ok) {
@@ -408,7 +408,7 @@ function HomePage() {
                 queryParams.append("water_temp", entry.water_temp);
                 queryParams.append("box_temp", entry.box_temp);
             });    
-            const response = await fetch(`http://localhost:8000/api/rice_peak?${queryParams.toString()}`);
+            const response = await fetch(`https://solar-cooker-performance-prediction.onrender.com/api/rice_peak?${queryParams.toString()}`);
             const data = await response.json();
             
             if (response.ok) {
@@ -442,7 +442,7 @@ function HomePage() {
                 queryParams.append("water_temp", entry.water_temp);
                 queryParams.append("box_temp", entry.box_temp);
             });    
-            const response = await fetch(`http://localhost:8000/api/sambar_peak?${queryParams.toString()}`);
+            const response = await fetch(`https://solar-cooker-performance-prediction.onrender.com/api/sambar_peak?${queryParams.toString()}`);
             const data = await response.json();
             
             if (response.ok) {
