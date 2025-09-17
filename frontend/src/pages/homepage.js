@@ -22,6 +22,7 @@ function HomePage() {
     const [sambar_peak, setSambarPeak] = useState([]);
     const autocompleteRef = useRef(null);
     const inputRef = useRef(null);
+    const MAX_DATE = "2025-06-30";
 
     useEffect(() => {
         const loadGoogleMapsAPI = () => {
@@ -516,6 +517,7 @@ function HomePage() {
                             className="input-field"
                             value={date}
                             onChange={(e) => setDate(e.target.value)}
+                            max={MAX_DATE}
                         />
                         <button className="btn-primary" onClick={getradiation} disabled={loading}>
                             {loading ? <span className="spinner"></span> : <><span role="img" aria-label="sun">☀️</span> Get Solar Radiation Data</>}
