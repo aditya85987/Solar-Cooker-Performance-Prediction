@@ -553,16 +553,25 @@ function HomePage() {
                             </div>
                         )}
                         
-                        {/* Solar Radiation Chart */}
+                        {/* Solar Radiation Chart - FIXED X-AXIS */}
                         {radiation_result && radiation_result.solar_radiation && (
                             <div className="chart-container">
                                 <div className="chart-title">
                                     <span role="img" aria-label="sun">☀️</span> Solar Radiation Intensity Over Time
                                 </div>
-                                <ResponsiveContainer width="100%" height={300}>
+                                <ResponsiveContainer width="100%" height={330}>
                                     <LineChart data={chartData}>
                                         <CartesianGrid strokeDasharray="3 3" stroke="#fbbf24" strokeOpacity={0.1} />
-                                        <XAxis dataKey="time" stroke="#92400e" strokeOpacity={0.3} />
+                                        <XAxis 
+                                            dataKey="time" 
+                                            stroke="#92400e" 
+                                            strokeOpacity={0.3}
+                                            interval={2}
+                                            angle={-45}
+                                            textAnchor="end"
+                                            height={80}
+                                            fontSize={11}
+                                        />
                                         <YAxis domain={[0, "auto"]} stroke="#92400e" strokeOpacity={0.3} />
                                         <Tooltip 
                                             contentStyle={{ backgroundColor: "#fbbf24", color: "#92400e", borderRadius: "10px", border: "none" }}
@@ -588,7 +597,7 @@ function HomePage() {
 
                 {/* Prediction Cards Grid */}
                 <div className="prediction-grid">
-                    {/* Without PCM Card */}
+                    {/* Without PCM Card - FIXED X-AXIS */}
                     <div className="prediction-card">
                         <div className="prediction-card-header">
                             <span role="img" aria-label="flame">🔥</span>
@@ -603,14 +612,23 @@ function HomePage() {
                         </div>
                         {withoutPcmResults.length > 0 && (
                             <div className="chart-container">
-                                <ResponsiveContainer width="100%" height={200}>
+                                <ResponsiveContainer width="100%" height={250}>
                                     <LineChart data={withoutPcmResults}>
                                         <CartesianGrid strokeDasharray="3 3" stroke="#fbbf24" strokeOpacity={0.1} />
-                                        <XAxis dataKey="time" stroke="#92400e" strokeOpacity={0.3} />
+                                        <XAxis 
+                                            dataKey="time" 
+                                            stroke="#92400e" 
+                                            strokeOpacity={0.3}
+                                            interval={2}
+                                            angle={-45}
+                                            textAnchor="end"
+                                            height={70}
+                                            fontSize={11}
+                                        />
                                         <YAxis domain={[0, "auto"]} stroke="#92400e" strokeOpacity={0.3} />
                                         <Tooltip contentStyle={{ backgroundColor: "#fbbf24", color: "#92400e", borderRadius: "10px", border: "none" }}
                                             itemStyle={{ color: "#92400e" }}
-                                            formatter={(value, name) => [`${value} °C`, name === "Water Temp" ? "Water Temp" : "Box Temp"]}
+                                            formatter={(value, name) => [`${value}°C`, name === "water_temp" ? "Water Temp" : "Box Temp"]}
                                             labelFormatter={(label) => `Time: ${label}`}
                                         />
                                         <Legend verticalAlign="top" wrapperStyle={{ color: "#92400e", fontSize: "12px", paddingBottom: "10px" }} />
@@ -622,7 +640,7 @@ function HomePage() {
                         )}
                     </div>
 
-                    {/* With PCM Card */}
+                    {/* With PCM Card - FIXED X-AXIS */}
                     <div className="prediction-card">
                         <div className="prediction-card-header">
                             <span role="img" aria-label="bolt">⚡</span>
@@ -637,14 +655,23 @@ function HomePage() {
                         </div>
                         {withPcmResults.length > 0 && (
                             <div className="chart-container">
-                                <ResponsiveContainer width="100%" height={200}>
+                                <ResponsiveContainer width="100%" height={250}>
                                     <LineChart data={withPcmResults}>
                                         <CartesianGrid strokeDasharray="3 3" stroke="#22c55e" strokeOpacity={0.1} />
-                                        <XAxis dataKey="time" stroke="#15803d" strokeOpacity={0.3} />
+                                        <XAxis 
+                                            dataKey="time" 
+                                            stroke="#15803d" 
+                                            strokeOpacity={0.3}
+                                            interval={2}
+                                            angle={-45}
+                                            textAnchor="end"
+                                            height={70}
+                                            fontSize={11}
+                                        />
                                         <YAxis domain={[0, "auto"]} stroke="#15803d" strokeOpacity={0.3} />
                                         <Tooltip contentStyle={{ backgroundColor: "#bbf7d0", color: "#15803d", borderRadius: "10px", border: "none" }}
                                             itemStyle={{ color: "#15803d" }}
-                                            formatter={(value, name) => [`${value} °C`, name === "Water Temp" ? "Water Temp" : "Box Temp"]}
+                                            formatter={(value, name) => [`${value}°C`, name === "water_temp" ? "Water Temp" : "Box Temp"]}
                                             labelFormatter={(label) => `Time: ${label}`}
                                         />
                                         <Legend verticalAlign="top" wrapperStyle={{ color: "#15803d", fontSize: "12px", paddingBottom: "10px" }} />
@@ -656,7 +683,7 @@ function HomePage() {
                         )}
                     </div>
 
-                    {/* PCM Temperature Prediction Card */}
+                    {/* PCM Temperature Prediction Card - FIXED X-AXIS */}
                     <div className="prediction-card">
                         <div className="prediction-card-header">
                             <span role="img" aria-label="bolt">⚡</span>
@@ -671,14 +698,23 @@ function HomePage() {
                         </div>
                         {pcmTempPredictions.length > 0 && (
                             <div className="chart-container">
-                                <ResponsiveContainer width="100%" height={200}>
+                                <ResponsiveContainer width="100%" height={250}>
                                     <LineChart data={pcmTempPredictions}>
                                         <CartesianGrid strokeDasharray="3 3" stroke="#22c55e" strokeOpacity={0.1} />
-                                        <XAxis dataKey="time" stroke="#15803d" strokeOpacity={0.3} />
+                                        <XAxis 
+                                            dataKey="time" 
+                                            stroke="#15803d" 
+                                            strokeOpacity={0.3}
+                                            interval={2}
+                                            angle={-45}
+                                            textAnchor="end"
+                                            height={70}
+                                            fontSize={11}
+                                        />
                                         <YAxis domain={[0, "auto"]} stroke="#15803d" strokeOpacity={0.3} />
                                         <Tooltip contentStyle={{ backgroundColor: "#bbf7d0", color: "#15803d", borderRadius: "10px", border: "none" }}
                                             itemStyle={{ color: "#15803d" }}
-                                            formatter={(value, name) => [`${value} °C`, name === "PCM Temp" ? "PCM Temp" : "Unknown"]}
+                                            formatter={(value, name) => [`${value}°C`, name === "pcm_temp" ? "PCM Temp" : "Unknown"]}
                                             labelFormatter={(label) => `Time: ${label}`}
                                         />
                                         <Legend verticalAlign="top" wrapperStyle={{ color: "#15803d", fontSize: "12px", paddingBottom: "10px" }} />
@@ -725,7 +761,7 @@ function HomePage() {
                     </div>
                 </div>
 
-                {/* Cooking Time Section */}
+                {/* Cooking Time Section - ALL CHARTS FIXED */}
                 <div className="cooking-grid">
                     <div className="card">
                         <div className="card-header">
@@ -739,14 +775,23 @@ function HomePage() {
                         </button>
                         {rice_room.length > 0 ? (
                             <div className="chart-container">
-                                <ResponsiveContainer width="100%" height={200}>
+                                <ResponsiveContainer width="100%" height={250}>
                                     <LineChart data={rice_room}>
                                         <CartesianGrid strokeDasharray="3 3" stroke="#fbbf24" strokeOpacity={0.1} />
-                                        <XAxis dataKey="time" stroke="#92400e" strokeOpacity={0.3} />
+                                        <XAxis 
+                                            dataKey="time" 
+                                            stroke="#92400e" 
+                                            strokeOpacity={0.3}
+                                            interval={2}
+                                            angle={-45}
+                                            textAnchor="end"
+                                            height={70}
+                                            fontSize={11}
+                                        />
                                         <YAxis domain={[0, "auto"]} stroke="#92400e" strokeOpacity={0.3} />
                                         <Tooltip contentStyle={{ backgroundColor: "#fbbf24", color: "#92400e", borderRadius: "10px", border: "none" }}
                                             itemStyle={{ color: "#92400e" }}
-                                            formatter={(value, name) => [`${value} min`, name === "Cooking Time" ? "Cooking Time" : "Time"]}
+                                            formatter={(value, name) => [`${value} min`, name === "cooking_time" ? "Cooking Time" : "Time"]}
                                             labelFormatter={(label) => `Time: ${label}`}
                                         />
                                         <Legend verticalAlign="top" wrapperStyle={{ color: "#92400e", fontSize: "16px", paddingBottom: "20px" }} />
@@ -771,14 +816,23 @@ function HomePage() {
                         </button>
                         {rice_peak.length > 0 ? (
                             <div className="chart-container">
-                                <ResponsiveContainer width="100%" height={200}>
+                                <ResponsiveContainer width="100%" height={250}>
                                     <LineChart data={rice_peak}>
                                         <CartesianGrid strokeDasharray="3 3" stroke="#fbbf24" strokeOpacity={0.1} />
-                                        <XAxis dataKey="time" stroke="#92400e" strokeOpacity={0.3} />
+                                        <XAxis 
+                                            dataKey="time" 
+                                            stroke="#92400e" 
+                                            strokeOpacity={0.3}
+                                            interval={2}
+                                            angle={-45}
+                                            textAnchor="end"
+                                            height={70}
+                                            fontSize={11}
+                                        />
                                         <YAxis domain={[0, "auto"]} stroke="#92400e" strokeOpacity={0.3} />
                                         <Tooltip contentStyle={{ backgroundColor: "#fbbf24", color: "#92400e", borderRadius: "10px", border: "none" }}
                                             itemStyle={{ color: "#92400e" }}
-                                            formatter={(value, name) => [`${value} min`, name === "Cooking Time" ? "Cooking Time" : "Time"]}
+                                            formatter={(value, name) => [`${value} min`, name === "cooking_time" ? "Cooking Time" : "Time"]}
                                             labelFormatter={(label) => `Time: ${label}`}
                                         />
                                         <Legend verticalAlign="top" wrapperStyle={{ color: "#92400e", fontSize: "16px", paddingBottom: "20px" }} />
@@ -804,14 +858,23 @@ function HomePage() {
                         </div>
                         {sambar_room.length > 0 ? (
                             <div className="chart-container">
-                                <ResponsiveContainer width="100%" height={200}>
+                                <ResponsiveContainer width="100%" height={250}>
                                     <LineChart data={sambar_room}>
                                         <CartesianGrid strokeDasharray="3 3" stroke="#fed7aa" strokeOpacity={0.1} />
-                                        <XAxis dataKey="time" stroke="#92400e" strokeOpacity={0.3} />
+                                        <XAxis 
+                                            dataKey="time" 
+                                            stroke="#92400e" 
+                                            strokeOpacity={0.3}
+                                            interval={2}
+                                            angle={-45}
+                                            textAnchor="end"
+                                            height={70}
+                                            fontSize={11}
+                                        />
                                         <YAxis domain={[0, "auto"]} stroke="#92400e" strokeOpacity={0.3} />
                                         <Tooltip contentStyle={{ backgroundColor: "#fed7aa", color: "#92400e", borderRadius: "10px", border: "none" }}
                                             itemStyle={{ color: "#92400e" }}
-                                            formatter={(value, name) => [`${value} min`, name === "Cooking Time" ? "Cooking Time" : "Time"]}
+                                            formatter={(value, name) => [`${value} min`, name === "cooking_time" ? "Cooking Time" : "Time"]}
                                             labelFormatter={(label) => `Time: ${label}`}
                                         />
                                         <Legend verticalAlign="top" wrapperStyle={{ color: "#92400e", fontSize: "16px", paddingBottom: "20px" }} />
@@ -837,14 +900,23 @@ function HomePage() {
                         </div>
                         {sambar_peak.length > 0 ? (
                             <div className="chart-container">
-                                <ResponsiveContainer width="100%" height={200}>
+                                <ResponsiveContainer width="100%" height={250}>
                                     <LineChart data={sambar_peak}>
                                         <CartesianGrid strokeDasharray="3 3" stroke="#fed7aa" strokeOpacity={0.1} />
-                                        <XAxis dataKey="time" stroke="#92400e" strokeOpacity={0.3} />
+                                        <XAxis 
+                                            dataKey="time" 
+                                            stroke="#92400e" 
+                                            strokeOpacity={0.3}
+                                            interval={2}
+                                            angle={-45}
+                                            textAnchor="end"
+                                            height={70}
+                                            fontSize={11}
+                                        />
                                         <YAxis domain={[0, "auto"]} stroke="#92400e" strokeOpacity={0.3} />
                                         <Tooltip contentStyle={{ backgroundColor: "#fed7aa", color: "#92400e", borderRadius: "10px", border: "none" }}
                                             itemStyle={{ color: "#92400e" }}
-                                            formatter={(value, name) => [`${value} min`, name === "Cooking Time" ? "Cooking Time" : "Time"]}
+                                            formatter={(value, name) => [`${value} min`, name === "cooking_time" ? "Cooking Time" : "Time"]}
                                             labelFormatter={(label) => `Time: ${label}`}
                                         />
                                         <Legend verticalAlign="top" wrapperStyle={{ color: "#92400e", fontSize: "16px", paddingBottom: "20px" }} />
@@ -865,7 +937,7 @@ function HomePage() {
                     <span role="img" aria-label="leaf">🌱</span>
                     <span role="img" aria-label="bolt">⚡</span>
                     <span role="img" aria-label="sun">☀️</span>
-            </div>
+                </div>
                 <div className="footer-text">
                     Powered by sustainable technology and AI predictions
                 </div>
