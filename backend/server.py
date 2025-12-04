@@ -229,73 +229,63 @@ def predict(total_minutes: List[int]=Query(...), solar_radiation: List[float]=Qu
 tps_model=joblib.load('./ml_model/tps_temp_model.pkl')
 
 @app.get("/api/eval")
-def predict(avg_radiation: float, Tw2withpcm: float, Tw2withoutpcm: float):
-    # --- EXISTING CONSTANTS ---
-    Cw = 4186      # Specific Heat Capacity of Water (J/kgK)
-    Ap = 0.2704    # Area of Plate (m^2)
-    Mw = 1         # Mass of water (kg)
-    Mp = 0.322     # Mass of Pot (kg)
-    Cp = 900       # Specific Heat capacity of Pot (J/kgK)
-    Ta = 32        # Ambient temperature
-    Tw1 = 25       # Initial water temperature
-    
-    # --- NEW PCM CONSTANTS (UPDATE THESE VALUES) ---
-    Mpcm = 2.0     # Mass of PCM in Kg (Example: 2.0 kg) - CHANGE THIS
-    Cpcm = 2500    # Specific Heat of PCM (J/kgK) (Example: Paraffin Wax) - CHANGE THIS
+def predict(avg_radiation: float, Tw2_with_pcm: float, Tw2_without_pcm:float):
+    #Defining constant variables
+    Cw = 4186 # Specific Heat Capacity of Water
+    Ap = 0.2704 #Area of Plate in Metre Sq.
+    Mw = 1 # Mass of water in Kg
+    Mp = 0.322 #Mass of Pot in Kg
+    Cp = 900 #Specific Heat capacity of Pot
+    Ta = 32 #ambient temperature (Ta)
+    Tw1 = 25
 
-    # 1. Calculate F1 (First Figure of Merit)
-    # Tps is the stagnation temperature from the model
-    Tps = tps_model.predict([[avg_radiation]])[0]
-    Gt = avg_radiation
-    F1 = (Tps - Ta) / Gt
+    #F1
+    Tps = tps_model.predict([[avg_radiation]])[0]  #max plat temp
+    Gt = avg_radiation #avg solar radiation
+    F1 = (Tps - Ta)/Gt
+    
 
-    # 2. Calculate F2 Without PCM
-    t = 41400 # Duration in seconds (11.5 hours)
-    
-    # C1 for Water Only
-    C1_water = (Mw * Ap * Cw) / t
-    
-    N = 1 - (1/F1) * ((Tw1 - Ta) / Gt)
-    D_without = 1 - (1/F1) * ((Tw2withoutpcm - Ta) / Gt)
-    
-    if N > 0 and D_without > 0:
-        C2_without = np.log(N / D_without)
+    #F2_without_PCM
+    t = 41400 #duration in seconds from 9:00 to 20:30
+    C1 = (Mw*Ap*Cw)/t
+    N= 1 - ((1/F1)*(Tw1-Ta))/Gt
+    D =1 - ((1/F1)*(Tw2_without_pcm-Ta))/Gt
+    if N>0 and D>0:
+        C2 = np.log(N/D)
     else:
-        C2_without = 1
-        
-    F2withoutpcm = F1 * C1_water * C2_without
+        C2=1
+    F2_without_pcm = F1*C1*C2
 
-    # 3. Calculate F2 With PCM (CORRECTED)
-    # C1 must include PCM Heat Capacity: (Mw*Cw + Mpcm*Cpcm)
-    # Note: We keep Ap in the numerator as per your original formula structure
-    C1_pcm = ((Mw * Cw + Mpcm * Cpcm) * Ap) / t
-    
-    D_with = 1 - (1/F1) * ((Tw2withpcm - Ta) / Gt)
-    
-    if N > 0 and D_with > 0:
-        C2_with = np.log(N / D_with)
+
+    #F2_with_PCM
+    t = 41400 #duration in seconds from 9:00 to 20:30
+    C1 = (Mw*Ap*Cw)/t
+    N= 1 - ((1/F1)*(Tw1-Ta))/Gt
+    D =1 - ((1/F1)*(Tw2_with_pcm-Ta))/Gt
+    if N>0 and D>0:
+        C2 = np.log(N/D)
     else:
-        C2_with = 1
-        
-    F2withpcm = F1 * C1_pcm * C2_with
+        C2=1
+    F2_with_pcm = F1*C1*C2
 
-    # 4. Efficiency Without PCM
-    dT_without = Tw2withoutpcm - Tw1
-    effwithoutpcm = (Mp * Cp * dT_without + Mw * Cw * dT_without) / (Gt * t * Ap)
+    #efficiency without pcm
+    dT = Tw2_without_pcm-Tw1 #change in box temp
+    eff_without_pcm = (Mp*Cp*dT+Mw*Cw*dT)/(Gt*t*Ap)
 
-    # 5. Efficiency With PCM (CORRECTED)
-    dT_with = Tw2withpcm - Tw1
-    # Add PCM energy term: Mpcm * Cpcm * dT_with
-    energy_with_pcm = (Mp * Cp * dT_with) + (Mw * Cw * dT_with) + (Mpcm * Cpcm * dT_with)
-    effwithpcm = energy_with_pcm / (Gt * t * Ap)
+
+    #efficiency with pcm
+    dT = Tw2_with_pcm-Tw1 #change in box temp
+    eff_with_pcm = (Mp*Cp*dT+Mw*Cw*dT)/(Gt*t*Ap)
 
     return {
-        "F1": float(F1) if math.isfinite(F1) else None,
-        "F2withoutpcm": float(F2withoutpcm) if math.isfinite(F2withoutpcm) else None,
-        "F2withpcm": float(F2withpcm) if math.isfinite(F2withpcm) else None,
-        "effwithoutpcm": float(effwithoutpcm) if math.isfinite(effwithoutpcm) else None,
-        "effwithpcm": float(effwithpcm) if math.isfinite(effwithpcm) else None
-    }
+    "F1": float(F1) if math.isfinite(F1) else None,
+    "F2_without_pcm": float(F2_without_pcm) if math.isfinite(F2_without_pcm) else None,
+    "F2_with_pcm": float(F2_with_pcm) if math.isfinite(F2_with_pcm) else None,
+    "eff_without_pcm": float(eff_without_pcm) if math.isfinite(eff_without_pcm) else None,
+    "eff_with_pcm": float(eff_with_pcm) if math.isfinite(eff_with_pcm) else None
+}
+
+
 
 
     
@@ -383,6 +373,7 @@ def predict_cooking_time(time: List[str] = Query(...),water_temp: List[float] = 
 
 
     return {"predictions": predictions}
+
 
 
 
