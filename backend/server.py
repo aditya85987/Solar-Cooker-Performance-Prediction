@@ -258,15 +258,17 @@ def predict(avg_radiation: float, Tw2_with_pcm: float, Tw2_without_pcm:float):
 
 
     #F2_with_PCM
+    Mpcm = 2.0     # Mass of PCM in Kg (Example: 2.0 kg)
+    Cpcm = 2500    # Specific Heat of PCM (J/kgK) (Example: Paraffin Wax) 
     t = 41400 #duration in seconds from 9:00 to 20:30
-    C1 = (Mw*Ap*Cw)/t
+    C1_pcm = ((Mw * Cw + Mpcm * Cpcm) * Ap) / t
     N= 1 - ((1/F1)*(Tw1-Ta))/Gt
     D =1 - ((1/F1)*(Tw2_with_pcm-Ta))/Gt
     if N>0 and D>0:
         C2 = np.log(N/D)
     else:
         C2=1
-    F2_with_pcm = F1*C1*C2
+    F2_with_pcm = F1*C1_pcm*C2
 
     #efficiency without pcm
     dT = Tw2_without_pcm-Tw1 #change in box temp
@@ -373,6 +375,7 @@ def predict_cooking_time(time: List[str] = Query(...),water_temp: List[float] = 
 
 
     return {"predictions": predictions}
+
 
 
 
