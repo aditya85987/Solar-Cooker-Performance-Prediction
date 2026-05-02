@@ -1,3 +1,5 @@
+import '@n8n/chat/style.css';
+import { createChat } from '@n8n/chat';
 import React, { useState, useEffect, useRef } from "react";
 import axios from 'axios';
 import "../styles/homepage.css";
@@ -61,6 +63,17 @@ function HomePage() {
 
         loadGoogleMapsAPI();
     }, []);
+    useEffect(() => {
+    createChat({
+        webhookUrl: 'https://n8n-service-s0td.onrender.com/webhook/c220a656-d1aa-4d94-8e0c-fbb5e718586d/chat',
+        mode: 'window', // floating chat
+        showWelcomeScreen: true,
+        initialMessages: [
+            'Hi 👋',
+            'I am your Solar Cooker AI Assistant. Ask me anything!'
+        ]
+    });
+}, []);
 
     const initializeAutocomplete = () => {
         if (!inputRef.current) {
