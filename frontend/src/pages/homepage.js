@@ -6,8 +6,6 @@ import "../styles/homepage.css";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from "recharts";
 
 function HomePage() {
-    const [latitude, setLatitude] = useState("");
-    const [longitude, setLongitude] = useState("");
     const [place, setPlace] = useState("");
     const [date, setDate] = useState("");
     const [loading, setLoading] = useState(false);
@@ -99,8 +97,6 @@ function HomePage() {
                 
                 if (place.geometry) {
                     setPlace(place.formatted_address || place.name);
-                    setLatitude(place.geometry.location.lat());
-                    setLongitude(place.geometry.location.lng());
                     console.log('Location set:', place.formatted_address);
                 } else {
                     console.warn('No geometry found for selected place');
