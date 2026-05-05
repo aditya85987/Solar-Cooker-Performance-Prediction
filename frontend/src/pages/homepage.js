@@ -22,7 +22,7 @@ function HomePage() {
     const [sambar_peak, setSambarPeak] = useState([]);
     const autocompleteRef = useRef(null);
     const inputRef = useRef(null);
-    const MAX_DATE = "2025-06-30";
+    const MAX_DATE = "2025-12-05";
 
     useEffect(() => {
         const loadGoogleMapsAPI = () => {
