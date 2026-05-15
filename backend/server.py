@@ -8,7 +8,10 @@ import numpy as np
 import pandas as pd
 from typing import List
 new_data = None
-
+from dotenv import load_dotenv
+import os
+GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
+OPENWEATHERMAP_API_KEY = os.getenv("OPENWEATHER_API_KEY")
 app = FastAPI()
 
 app.add_middleware(
