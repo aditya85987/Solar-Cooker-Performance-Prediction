@@ -8,7 +8,7 @@ import numpy as np
 import pandas as pd
 from typing import List
 new_data = None
-GOOGLE_API_KEY = "AIzaSyDZXOl2w80IeRUOvBlLooNFhbBZf6_0UZ4"
+
 app = FastAPI()
 
 app.add_middleware(
@@ -20,8 +20,7 @@ app.add_middleware(
 )
 
 
-# API Keys (Replace with your actual OpenWeatherMap API key)
-OPENWEATHERMAP_API_KEY = "b7bf0702e15026adf3b50f268a82d31d"
+
 
 # Function to get weather data from OpenWeatherMap
 def get_weather_data(lat: float, lon: float):
