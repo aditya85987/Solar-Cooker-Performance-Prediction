@@ -26,24 +26,24 @@ app.add_middleware(
 
 
 # Function to get weather data from OpenWeatherMap
-def get_weather_data(lat: float, lon: float):
-    url = f"https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={OPENWEATHERMAP_API_KEY}&units=metric"
+# def get_weather_data(lat: float, lon: float):
+#     url = f"https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={OPENWEATHERMAP_API_KEY}&units=metric"
     
-    response = requests.get(url)
-    if response.status_code == 200:
-        data = response.json()
-        # console.log("aditya weather")
+#     response = requests.get(url)
+#     if response.status_code == 200:
+#         data = response.json()
+#         # console.log("aditya weather")
         
         
 
-        return {
-            "location": data.get("name", "Unknown"),
-            #"temperature": data["main"]["temp"],
-            #"humidity": data["main"]["humidity"],
-            #"wind_speed": data["wind"]["speed"],
-        }
-    else:
-        return {"error": "Failed to fetch weather data"}
+#         return {
+#             "location": data.get("name", "Unknown"),
+#             #"temperature": data["main"]["temp"],
+#             #"humidity": data["main"]["humidity"],
+#             #"wind_speed": data["wind"]["speed"],
+#         }
+#     else:
+#         return {"error": "Failed to fetch weather data"}
 
 # Function to get solar radiation from NASA POWER API
 def get_solar_radiation(lat: float, lon: float, date: str):
@@ -118,11 +118,11 @@ def get_weather(place: str = Query(...), date: str = Query(...)):
     formatted_address = data["results"][0].get("formatted_address", place)
     
     # Use existing logic
-    weather_data = get_weather_data(lat, lon)
+    # weather_data = get_weather_data(lat, lon)
     radiation_data = get_solar_radiation(lat, lon, date)
 
-    if "error" in weather_data:
-        return {"error": weather_data["error"]}
+    # if "error" in weather_data:
+    #     return {"error": weather_data["error"]}
     if "error" in radiation_data:
         return {"error": radiation_data["error"]}
 
